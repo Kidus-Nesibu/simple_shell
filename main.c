@@ -6,7 +6,7 @@ int main ()
 	char *buffer = NULL;
 	while (1)
 	{
-		printf("$");
+		printf("#cisfun$");
 		getr = getline(&buffer, &len, stdin);
 		if (getr != -1)
 		{
