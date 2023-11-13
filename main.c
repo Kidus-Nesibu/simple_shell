@@ -1,5 +1,8 @@
 #include "shell.h"
-
+/**
+ * main - runs a simple shell program within it
+ * Return: 0 when sucsses
+ */
 int main(void)
 {
 	char *cmd = NULL;
