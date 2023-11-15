@@ -1,4 +1,4 @@
-#ifndef
+#ifndef SHELL_H
 #define SHELL_H
 
 #include <stdio.h>
@@ -9,7 +9,6 @@
 
 #define MAX_COMMAND_LENGTH 100
 
-extern char **environ;
 void tokenize_command(char *cmd, char *argv[]);
 int str_cmp(const char *str1, const char *str2);
 void execute_command(char *cmd);
