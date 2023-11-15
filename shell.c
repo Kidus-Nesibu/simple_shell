@@ -1,9 +1,10 @@
 #include "shell.h"
 
 /**
-* main - this is the main executing function
+* main - this function executes all the functions
 * Return: Always 0
 */
+
 int main(void)
 {
 	char *cmd = NULL;
@@ -11,19 +12,19 @@ int main(void)
 
 	while (1)
 	{
-	printf("$ ");
-	fflush(stdout);
+		printf("$ ");
+		fflush(stdout);
 
-	if (getline(&cmd, &len, stdin) == -1)
-	{
-		printf("\nExiting the shell.\n");
-		break;
-	}
-	if (cmd[strlen(cmd) - 1] == '\n')
-		cmd[strlen(cmd) - 1] = '\0';
-	if (str_cmp(cmd, "exit") == 0)
-		exit(0);
-	execute_command(cmd);
+		if (getline(&cmd, &len, stdin) == -1)
+		{
+			printf("\nExiting the shell.\n");
+			break;
+		}
+		if (cmd[strlen(cmd) - 1] == '\n')
+			cmd[strlen(cmd) - 1] = '\0';
+		if (str_cmp(cmd, "exit") == 0)
+			exit(0);
+		execute_command(cmd);
 	}
 
 	free(cmd);
@@ -37,25 +38,23 @@ int main(void)
 * Return: void
 */
 
-
 void execute_command(char *cmd)
 {
 	pid_t pid = fork();
 
 	if (pid < 0)
 	{
-	perror("Fork failed");
-		exit(EXIT_FAILURE);
-
+		perror("Fork failed");
+			exit(EXIT_FAILURE);
 	}
 	else if (pid == 0)
 	{
-	char *argv[MAX_COMMAND_LENGTH];
+		char *argv[MAX_COMMAND_LENGTH];
 
-	tokenize_command(cmd, argv);
-	execve(argv[0], argv, environ);
-	perror("./shell");
-	exit(EXIT_FAILURE);
+		tokenize_command(cmd, argv);
+		execve(argv[0], argv, NULL);
+		perror("./shell");
+		exit(EXIT_FAILURE);
 	}
 	else
 	{
@@ -64,13 +63,13 @@ void execute_command(char *cmd)
 		wait(&status);
 	}
 }
-
 /**
 * tokenize_command - this func tokenizes the command
 * @cmd: the command input
 * @argv: the array of commands
 * Return: void
 */
+
 void tokenize_command(char *cmd, char *argv[])
 {
 	char *token;
@@ -82,26 +81,25 @@ void tokenize_command(char *cmd, char *argv[])
 		argv[i++] = token;
 		token = strtok(NULL, " ");
 
-	argv[i] = NULL;
+		argv[i] = NULL;
 	}
 }
-
 /**
 * str_cmp - compares two strings
 * @str1: input for string 1
 * @str2: input for string 2
 * Return: 0 if they are the same otherwise if not
 */
+
 int str_cmp(const char *str1, const char *str2)
 {
 	while (*str1 != '\0' && *str2 != '\0')
 	{
 		if (*str1 != *str2)
-		{
 			return (*str1 - *str2);
-		}
 		str1++;
 		str2++;
 	}
 	return (*str1 - *str2);
 }
+
