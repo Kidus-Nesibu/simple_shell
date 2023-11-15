@@ -97,10 +97,12 @@ void tokenize_command(char *cmd, char *argv[])
 void environment(void)
 {
 	extern char **environ;
-
-	for (int i = 0; environ[i] != NULL; i++)
+	int i = 0;
+	
+	while(environ[i] != NULL)
 	{
 		printf("%s\n", environ[i]);
+		i++;
 	}
 }
 
