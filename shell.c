@@ -11,7 +11,7 @@ int main(void)
 
 	while (1)
 	{
-	printf("$ ");
+	printf("#cisfun$ ");
 	fflush(stdout);
 
 	if (getline(&cmd, &len, stdin) == -1)
