@@ -52,7 +52,7 @@ void execute_command(char *cmd)
 		char *argv[MAX_COMMAND_LENGTH];
 
 		tokenize_command(cmd, argv);
-		execve(argv[0], argv, environ);
+		execve(argv[0], argv, NULL);
 		perror("./shell");
 		exit(EXIT_FAILURE);
 	}
