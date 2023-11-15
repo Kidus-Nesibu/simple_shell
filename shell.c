@@ -22,9 +22,6 @@ int main(void)
 	if (cmd[strlen(cmd) - 1] == '\n')
 		cmd[strlen(cmd) - 1] = '\0';
 
-	if (str_cmp(cmd, "env") == 0)
-		environment();
-
 	if (str_cmp(cmd, "exit") == 0)
 		exit(0);
 
@@ -86,23 +83,6 @@ void tokenize_command(char *cmd, char *argv[])
 		token = strtok(NULL, " ");
 
 	argv[i] = NULL;
-	}
-}
-
-/**
-* environment - prints the current environment
-* @enviro: the input for environment
-* Return: void
-*/
-void environment(void)
-{
-	extern char **environ;
-	int i = 0;
-	
-	while(environ[i] != NULL)
-	{
-		printf("%s\n", environ[i]);
-		i++;
 	}
 }
 
