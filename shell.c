@@ -22,9 +22,6 @@ int main(void)
 	if (cmd[strlen(cmd) - 1] == '\n')
 		cmd[strlen(cmd) - 1] = '\0';
 
-	if (str_cmp(cmd, "exit") == 0)
-		exit(0);
-
 	execute_command(cmd);
 	}
 
@@ -54,7 +51,7 @@ void execute_command(char *cmd)
 
 	tokenize_command(cmd, argv);
 	execve(argv[0], argv, NULL);
-	perror("Error");
+	perror("./shell");
 	exit(EXIT_FAILURE);
 	}
 	else
